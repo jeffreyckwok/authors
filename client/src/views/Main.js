@@ -10,9 +10,7 @@ export default () => {
   useEffect(()=> {
     axios.get('http://localhost:8000/api/authors')
       .then(res=>{
-        console.log(res.data);
         setAuthors(res.data);
-        console.log(authors);
         setLoaded(true);
       });
   }, [])
@@ -27,7 +25,7 @@ export default () => {
   return (
     <div>
       <Link to={"/new"}>Add an author</Link>
-      {loaded && <AuthorList authors={authors}/>}
+      {loaded && <AuthorList authors={authors} setAuthors={setAuthors}/>}
     </div>
   )
 }

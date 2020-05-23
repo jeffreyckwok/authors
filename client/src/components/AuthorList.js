@@ -4,25 +4,22 @@ import { Link } from '@reach/router';
 import DeleteButton from './DeleteButton';
 
 export default props => {
-  const [ authors, setAuthors ] = useState([]);
+  const { authors, setAuthors } = props;
 
   useEffect(() => {
     axios.get('http://localhost:8000/api/authors')
       .then(res=> setAuthors(res.data))
-      .then(res=>console.log(authors));
   }, [])
 
   const removeFromDom = authorId => {
     console.log(authorId);
     const updatedAuthors = authors.filter(author => author._id != authorId);
     setAuthors(updatedAuthors);
-    console.log(updatedAuthors);
-    console.log(authors);
   }
 
   return (
     <div>
-      {props.authors.map((author, index)=>{
+      {authors.map((author, index)=>{
         return (
           <div key={index}>
             <p>{author.name}</p>

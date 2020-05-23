@@ -6,7 +6,6 @@ export default props => {
         axios.delete('http://localhost:8000/api/authors/' + authorId)
             .then(res=>{
                 successCallback();
-                console.log("success callback run");
             })
     }
     return (
